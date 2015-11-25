@@ -64,8 +64,6 @@ impl<T> Signal<T>
       let entry: DataEntry<T>;
       let cell: Rc<RefCell<F>>;
 
-      println!("Callback passed:  {:?}", callback as *mut F);
-
       cell = Rc::new(RefCell::new(callback));
       entry = DataEntry {target: data, callback: cell};
       self.entries.push(Box::new(entry));
@@ -87,7 +85,6 @@ impl<T> Signal<T>
       where F: FnMut(&Any, &Event<T>) + 'static,
             T: 'static
    {
-      println!("Callback passed:  {:?}", callback as *mut F);
    }
 
    pub fn call(&mut self, event: &Event<T>)
